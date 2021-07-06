@@ -1,19 +1,47 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
+{% block content %}
 
-  <title>Posts</title>
-  <nav>Albums</nav>
-  <link rel="stylesheet" href="/static/style.css">
-
-  {% block head %}{% endblock %}
-</head>
 
 <body>
 
+  <div class="container">
+    <div class="card-deck row m-5">
+      <div class="card text-center col-3" ">
+        <div class="card-block">
+          <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card text-center col-3" ">
+        <div class="card-block">
+          <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card text-center col-3" ">
+        <div class="card-block">
+          <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+      <div class="card text-center col-3" ">
+        <div class="card-block">
+          <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </body>
 
 </html>
+
+
+{% endblock %}
