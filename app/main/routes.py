@@ -4,7 +4,7 @@ from jinja2 import Template
 
 from bson.objectid import ObjectId
 import pymongo
-import dns
+# import dns
 import os
 
 ############################################################

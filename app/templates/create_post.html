@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="conatiner">
+    <div class="row row-cols-md-3 g-4 justify-content-center" style="padding-left:5rem; padding-right:5rem; padding-top: 4rem;">
+        <div class="card text-center" style="width: 18rem;">
+            <img src="{{ image path goes here }}" class="card-img-top" alt="{{image description goes here }}">
+            <div class="card-body">
+                {% if mood_messages != "" %}
+            <h6 class="card-text">{{ mood_messages }}</h6>
+                {% endif %}
+            </div>
+            <form action="/" method="GET">
+                
+                <div class="input-group mb-3" style="padding-top: 2rem;">
+                    <input type="text" class="form-control" name="album" placeholder="Album" aria-label="Album Name" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" name="city" placeholder="Location" aria-label="Where was this?" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" name="description" placeholder="Quick description" aria-label="Quick description" aria-describedby="button-addon2">
+                    <input type="text" class="form-control" name="details" placeholder="Details" aria-label="Details" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">check</button>
+                </div>
+            
+        </form>
+      
+        </div>
+    </div> 
+</div>
+
+
+
+
+{% endblock %}
