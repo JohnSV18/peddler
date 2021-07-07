@@ -33,29 +33,31 @@ def home():
 
     return render_template('home.html', **context)
 
+
 @main.route('/createpost', methods=["GET", "POST"])
 def create():
     post_title = request.form.get('post_title')
-    location = request.form.get('location')    
+    location = request.form.get('location')
     post_description = request.form.get('post_description')
     post_long_description = request.form.get('post_long_description')
 
     if request.method == 'POST':
         new_post = {
-            'post_title' : post_title,
-            'location' : location,
+            'post_title': post_title,
+            'location': location,
             'post_description': post_description,
             'post_long_description': post_long_description
-    
+
         }
-       
-        result=mongo.db.workouts_data.insert_one(new_post)
+
+        result = mongo.db.workouts_data.insert_one(new_post)
         inserted_id = result.inserted_id
 
         return redirect(url_for('detail', post_id=inserted_id))
 
     else:
-        return render_template('createpost.html')
+        return render_template('create_post.html')
+
 
 @main.route('/edit/<post_id>', methods=["GET", "POST"])
 def edit(post_id):
@@ -64,17 +66,16 @@ def edit(post_id):
         location = request.form.get('location')
         post_description = request.form.get('post_description')
         post_long_description = request.form.get('post_long_description')
-        
 
         mongo.db.workouts_data.update_one({
             '_id': ObjectId(post_id),
-            
+
         },
-        {
+            {
             '$set': {
                 '_id': ObjectId(post_id),
-                'post_title' : post_title,
-                'location' : location,
+                'post_title': post_title,
+                'location': location,
                 'post_description': post_description,
                 'post_long_description': post_long_description
             }
@@ -83,7 +84,7 @@ def edit(post_id):
         return redirect(url_for('detail', post_id=post_id))
     else:
 
-        post_to_show=mongo.db.posts_data.find_one({
+        post_to_show = mongo.db.posts_data.find_one({
             '_id': ObjectId(post_id)
         })
 
