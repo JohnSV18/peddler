@@ -14,7 +14,7 @@ and share amazing bicycle rides in a given city!
 ***
 
 ## Installation and Documentation:
-##### `$ pip install -r requirements.txt`
+##### `$ pip3 install -r requirements.txt`
 ***
 ##  Available Scripts
 
