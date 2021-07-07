@@ -50,7 +50,7 @@ def create():
 
         }
 
-        result = mongo.db.workouts_data.insert_one(new_post)
+        result = mongo.db.posts.insert_one(new_post)
         inserted_id = result.inserted_id
 
         return redirect(url_for('detail', post_id=inserted_id))
