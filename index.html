@@ -9,12 +9,21 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
-
+  <nav>
+    <a href="#/">EN</a>
+    <a href="https://github.com/JohnSV18/peddler.git">Github Repo</a>
+  </nav>
+  
+  <div id="app">Please wait...</div>
 
   <script>
     window.$docsify = {
       coverpage: true,
+      loadNavbar: true,
+      loadSidebar: true,
+      alias: {
+      '/.*/_sidebar.md': '/_sidebar.md'
+    },
       name: '',
       repo: ''
     }
