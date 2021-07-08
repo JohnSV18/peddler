@@ -7,35 +7,38 @@
     <div class="row justify-content-center">
         <div class="card" style="width: 18rem;">
             <form method=‘POST’>
-                
-                <div>
-                    <label for="validationCustom01" class="form-label">Upload your Picture</label>
-                    <input type=“url” name=“photo” value=“{{post.photo_url}}“>
-                </div>
-                <div>
-                    <label for="validationCustom01" class="form-label">Post title</label>
-                    <input type=“text” name=“plant_name” value=“{{post.post_title}}“>
-                </div>
-                <div>
-                    <label for="validationCustom01" class="form-label">location</label>
-                    <input type=“text” name=“plant_name” value=“{{post.location}}“>
-                </div>
-                <div>
-                    <label for="validationCustom01" class="form-label">Post description</label>
-                    <input type=“text” name=“variety” value=“{{post.post_description}}“>
-                </div>
-                <div>
-                    <label for="validationCustom01" class="form-label">More details</label>
-                    <input type=“date” name=“date_planted” value=“{{post.post_long_description}}“>
-                </div>
-                <div>
-                    <input type="submit" class="submit" value="Edit">
+                <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
+                    <div class="p-2">
+                        
+                        <input type=“url” name=“photo” value=“{{post.photo_url}}“>
+                    </div>
+                    <div class="p-2">
+                        
+                        <input type=“text” name=“plant_name” value=“{{post.post_title}}“>
+                    </div>
+                    <div class="p-2">
+                       
+                        <input type=“text” name=“plant_name” value=“{{post.location}}“>
+                    </div>
+                    <div class="p-2">
+                        
+                        <input type=“text” name=“variety” value=“{{post.post_description}}“>
+                    </div>
+                    <div class="p-2">
+                        
+                        <input type=“date” name=“date_planted” value=“{{post.post_long_description}}“>
+                    </div>
+                    <div class="p-2">
+                        <input type="submit" class="submit" value="Edit">
+                    </div>
                 </div>
             </form>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <!-- <a class="nav" href="/edit/{{post._id}}">Edit Post</a><br><br> -->
                 <form action="/delete/{{post._id}}" method='POST' id="delete-form" onsubmit="return confirm_delete()">
-                    <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post">
+                    <div class="p-2">
+                        <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post">
+                    </div>
                 </form>
             </div>
         </div>
