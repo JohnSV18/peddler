@@ -41,9 +41,13 @@ Mongo DB database
 
 ## Contributors:
 
-***
 
-##
+
+
+![John, David, Andrea](./Teamspd1.5.png)
+***
+[John](https://github.com/JohnSV18) [David](https://github.com/Aetrix27) [Andrea](https://github.com/AndreaGraziosi)
+
 
 
 
