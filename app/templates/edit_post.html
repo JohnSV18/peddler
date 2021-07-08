@@ -6,21 +6,32 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="card" style="width: 18rem;">
-            <img src="{{post.photo_url}}" class="card-img-top" alt="{{location}}">
-            <div class="card-body">
-            <h5 class="card-title">{{post_title}}</h5>
-            <p class="card-text">{{post_description}}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{location}}</li>
-            <li class="list-group-item">{{post_long_description}}</li>
-            <!-- <li class="list-group-item">A third item</li> -->
-            </ul>
-            <div class="card-body">
-            <a class="nav" href="/edit/{{post._id}}">Edit Post</a><br><br>
-            <form action="/delete/{{post._id}}" method='POST' id="delete-form" onsubmit="return confirm_delete()">
-            <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post">
+            <form method=‘POST’>
+                
+                <div>
+                    <input type=“url” name=“photo” value=“{{post.photo_url}}“>
+                </div>
+                <div>
+                    <input type=“text” name=“plant_name” value=“{{post.post_title}}“>
+                </div>
+                <div>
+                    <input type=“text” name=“plant_name” value=“{{post.location}}“>
+                </div>
+                <div>
+                    <input type=“text” name=“variety” value=“{{post.post_description}}“>
+                </div>
+                <div>
+                    <input type=“date” name=“date_planted” value=“{{post.post_long_description}}“>
+                </div>
+                <div>
+                    <input type="submit" class="submit" value="Edit">
+                </div>
             </form>
+            <div class="card-body">
+                <!-- <a class="nav" href="/edit/{{post._id}}">Edit Post</a><br><br> -->
+                <form action="/delete/{{post._id}}" method='POST' id="delete-form" onsubmit="return confirm_delete()">
+                    <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post">
+                </form>
             </div>
         </div>
     </div>  

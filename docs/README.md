@@ -1,6 +1,6 @@
 # Cyclik
 ***
-##### For better experience click here:
+##### For a better reading experience click  [here](https://johnsv18.github.io/peddler/)
 ## Why we made this:
 * To create a welcoming community where users can post beautiful photographs
 and share amazing bicycle rides in a given city!
@@ -9,7 +9,7 @@ and share amazing bicycle rides in a given city!
 
 ![Alaska](./Alaska-ride.png)
 
-*could be you*
+*could be you *
 
 ***
 
@@ -41,9 +41,10 @@ Mongo DB database
 
 ## Contributors:
 
+![John, David, Andrea](./Teamspd1.5.png)
 ***
+[John](https://github.com/JohnSV18) | [David](https://github.com/Aetrix27) | [Andrea](https://github.com/AndreaGraziosi)
 
-##
 
 
 
