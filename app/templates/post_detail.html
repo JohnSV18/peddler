@@ -3,12 +3,12 @@
 <div class="container">
     <div class="row row-cols-md-3 g-4 justify-content-center" style="padding-left:5rem; padding-right:5rem; padding-top: 4rem;">
         <div class="card text-center" style="width: 18rem;">
-            <h5 class="card-title">{{post.post_title}}</h5>
-            <p class="card-text">{{post.post_description}}</p>
+            <h5 class="card-title">{{post_id.post_title}}</h5>
+            <p class="card-text">{{post_id.post_description}}</p>
             </div>
             <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{post.location}}</li>
-            <li class="list-group-item">{{post.post_long_description}}</li>
+            <li class="list-group-item">{{post_id.location}}</li>
+            <li class="list-group-item">{{post_id.post_long_description}}</li>
             <!-- <li class="list-group-item">A third item</li> -->
             </ul>
         </div>
@@ -16,8 +16,11 @@
 
     <div>
 
+    Edit post
+    <a class="nav" href="/edit/{{post._id}}">Edit Post</a>
 
-        <a class="nav" href="/edit/album/{{post._id}}">Edit Post</a>
+    Add Photos to Album
+        <a class="nav" href="/edit/album/{{post._id}}">Edit Photo Album</a>
     </div>
     
     
