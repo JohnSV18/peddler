@@ -96,3 +96,14 @@ def edit(post_id):
         }
 
         return render_template('edit.html', **context)
+
+@main.route('/post/<post_id')
+def detail(post_id):
+    post_to_show = mongo.db.posts.find_one({
+        '_id': ObjectId(post_id)
+    })
+    context = {
+        'post_id': ObjectId(post_id),
+        'post': post_to_show
+    }
+    return render_template('post_detail.html', **context)
