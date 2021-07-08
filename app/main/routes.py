@@ -36,6 +36,7 @@ def home():
 
 @main.route('/createpost', methods=["GET", "POST"])
 def create():
+    post_url = request.form.get('post_url')
     post_title = request.form.get('post_title')
     location = request.form.get('location')
     post_description = request.form.get('post_description')
@@ -43,6 +44,7 @@ def create():
 
     if request.method == 'POST':
         new_post = {
+            'post_url': post_url,
             'post_title': post_title,
             'location': location,
             'post_description': post_description,
@@ -63,6 +65,7 @@ def create():
 @ main.route('/edit/<post_id>', methods=["GET", "POST"])
 def edit(post_id):
     if request.method == "POST":
+        post_url = request.form.get('post_url')
         post_title = request.form.get('post_title')
         location = request.form.get('location')
         post_description = request.form.get('post_description')
@@ -75,6 +78,7 @@ def edit(post_id):
             {
             '$set': {
                 '_id': ObjectId(post_id),
+                'post_url' : post_url,
                 'post_title': post_title,
                 'location': location,
                 'post_description': post_description,
