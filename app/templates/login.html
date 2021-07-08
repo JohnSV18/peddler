@@ -6,17 +6,11 @@
     <div class="row justify-content-center">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <h5 class="card-title">Cyclik</h5>
+                <h5 class="card-title">Cyclik login!</h5>
                 <form action="/signup" method="POST">
                     {{ form.csrf_token }}
 
                     <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
-                        <div class="p-2">
-                            <input type="url" class="form-control" name="full-name" value="">
-                        </div>
-                        <div class="p-2">
-                            <input type="text" class="form-control"  name="user-name" value="">
-                        </div>
                         <div class="p-2">
                             <input type="text" class="form-control"  name="email" value="">
                         </div>
@@ -26,7 +20,7 @@
                         
                         <div class="pt-2">
                             <!-- <input type="submit" class="submit" value="Edit"> -->
-                            <button class="btn btn-secondary" value="Edit" type="submit">Sign-up</button>
+                            <button class="btn btn-secondary" value="Edit" type="submit">Login</button>
                         </div>
                     </div>
                 </form>
@@ -38,8 +32,8 @@
             <form action="" method='POST'>
                 <div class=" m-3 text-center">
                     <!-- <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post"> -->
-                    <div id="emailHelp" class="form-text">If you already have an account</div>
-                    <a href="#" class="btn btn-primary">login</a>
+                    <div id="emailHelp" class="form-text">If you dont already have an account</div>
+                    <a href="#" class="btn btn-primary">Sign Up</a>
                     
                 </div>
             </form>
@@ -49,16 +43,3 @@
 </div>
 
 {% endblock content %}
-
-
-<!-- <h1>Sign Up</h1>
-
-<form action="/signup" method="POST">
-    {{ form.csrf_token }}
-    <fieldset>
-        <legend>Enter your credentials</legend>
-
-        {{ form.username.label }}
-        {{ form.username }}
-    </fieldset>
-</form> -->

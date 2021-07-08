@@ -2,19 +2,19 @@
 
 {% block content %}
   <!-- Items -->
-<<<<<<< HEAD
 
-=======
->>>>>>> 615a0d9765a72141fbfa6107279dcdc3245e6433
   
-  <div class="container">
+  <div class="container mt-5">
+    <div class="page-header text-center m-5">
+      <h2>Share your adventures <small>where will you go next?</small></h1>
+    </div>
     <div class="row justify-content-center">
         
             {% for post in posts %}
             
       <div class="card" id = "items" style="width: 18rem;">
-        <div class="card-block mr-5">
-          <img class="card-img-top" src="{{post.post_url}}" alt="..." width="250px" height="250px">
+        <div class="card-block m-2">
+          <img class="card-img-top" src="{{post.post_url}}" alt="{{post.location}}" width="250px" height="250px">
           <h5 class="card-title">{{post.post_title}}</h5>
                  
                   {{post.location}}
