@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  Items
+  <!-- Items -->
   <div id = "items">
     {% for post in posts%}
     <div class="card mb-4 md-2 m-5 lg-6">
@@ -13,7 +13,7 @@
     </div>
     {% endfor %}
   </div>
-
+  
   <div class="container">
     <div class="row m-5">
       <div class="card text-center col-3 ">
@@ -21,7 +21,7 @@
           <div class="card-block mr-5">
             <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
             <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">location</p>
           </div>
        </div>
       </div>
@@ -48,6 +48,7 @@
       </div>
     </div>
   </div>
+  
 
 
 

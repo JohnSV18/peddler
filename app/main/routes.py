@@ -56,7 +56,7 @@ def create():
         result = mongo.db.posts.insert_one(new_post)
         inserted_id = result.inserted_id
 
-        return render_template('home.html')
+        return render_template('post_detail.html', post_id = inserted_id)
 
     else:
         return render_template('create_post.html')
