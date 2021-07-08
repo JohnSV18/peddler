@@ -2,23 +2,28 @@
 
 {% block content %}
   <!-- Items -->
-  <div id = "items">
-    {% for post in posts%}
-    <div class="mr-5">
-      <div class="card-block mr-5">
-        <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
-        <h5 class="card-title">     {{post.post_title}}   </h5>
-            {{post.location}}
-            {{post.post_description}}
-            {{post.long_description}}
-            <a href="/post/{{ post._id }}">Details</a>
-
-        </div>
-    </div>
-    {% endfor %}
-  </div>
   
   <div class="container">
+    <div class="row justify-content-center">
+        
+            {% for post in posts%}
+            
+      <div class="card" id = "items" style="width: 18rem;">
+        <div class="card-block mr-5">
+          <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
+          <h5 class="card-title">{{post.post_title}}</h5>
+                  {{post.location}}
+                  {{post.post_description}}
+                  {{post.long_description}}
+          <a href="/post/{{ post._id }}">Details</a>
+
+        </div>
+      </div>
+              {% endfor %}
+    </div>
+  </div> 
+  
+  <!-- <div class="container">
     <div class="row m-5">
       <div class="card text-center col-3 ">
         <div class="mr-5">
@@ -84,7 +89,7 @@
       
       
     </div>
-  </div>
+  </div> -->
 
 
 
