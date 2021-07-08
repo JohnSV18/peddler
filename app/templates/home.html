@@ -11,24 +11,12 @@
             
       <div class="card" id = "items" style="width: 18rem;">
         <div class="card-block mr-5">
-          <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
+          <img class="card-img-top" src="{{post.post_url}}" alt="Card image cap"width="250px" height="250px">
           <h5 class="card-title">{{post.post_title}}</h5>
                   {{post.location}}
                   {{post.post_description}}
                   {{post.long_description}}
           <a href="/post/{{ post._id }}">Details</a>
-=======
-  <div id = "items">
-    {% for post in posts%}
-    <div class="mr-5">
-      <div class="card-block mr-5">
-        <img class="card-img-top" src="{{post.post_url}}" width="250px" height="250px">
-        <h5 class="card-title">     {{post.post_title}}   </h5>
-            {{post.location}}
-            {{post.post_description}}
-            {{post.long_description}}
-            <a href="/post/{{ post._id }}">Details</a>
->>>>>>> 8cafcba32b164e6cd1375d8307551ab72738f2b5
 
         </div>
       </div>
