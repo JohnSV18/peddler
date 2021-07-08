@@ -2,21 +2,23 @@
 
 {% block content %}
   <!-- Items -->
-<<<<<<< HEAD
+
   
   <div class="container">
     <div class="row justify-content-center">
         
-            {% for post in posts%}
+            {% for post in posts %}
             
       <div class="card" id = "items" style="width: 18rem;">
         <div class="card-block mr-5">
-          <img class="card-img-top" src="{{post.post_url}}" alt="Card image cap"width="250px" height="250px">
+          <img class="card-img-top" src="{{post.post_url}}" alt="..." width="250px" height="250px">
           <h5 class="card-title">{{post.post_title}}</h5>
+                 
                   {{post.location}}
                   {{post.post_description}}
                   {{post.long_description}}
-          <a href="/post/{{ post._id }}">Details</a>
+
+          <a href="/post/{{ post._id }}">Add More Details</a>
 
         </div>
       </div>
@@ -24,76 +26,4 @@
     </div>
   </div> 
   
-  <!-- <div class="container">
-    <div class="row m-5">
-      <div class="card text-center col-3 ">
-        <div class="mr-5">
-          <div class="card-block mr-5">
-            <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">location</p>
-
-          </div>
-       </div>
-      </div>
-      <div class="card text-center col-3" >
-        <div class="card-block">
-          <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card text-center col-3" >
-        <div class="card-block">
-          <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card text-center col-3" >
-        <div class="card-block">
-          <img class="card-img-top" src="./static/city-nyc.jpg" alt="Card image cap">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
-
-
-  <div class="row d-flex justify-content-center">
-        
-    <div class="col-3 m-5">
-      
-        <img src="/app/static/city-nyc.jpg" alt="lights" width="400" height="400">
-        <div class="card-text">
-          <h3>Challenges in New York City</h3>
-       
-      </div>
-      
-    </div>
-    <div class="col-3 m-5">
-        <img src="/app/static/city-nyc.jpg" alt="lights" width="400" height="400">
-        <div class="card-text">
-          <h3>Challenges in San Fransisco</h3>
-      </div>
-    </div>
-    <div class="col-3 m-5">
-      
-        <img src="/app/static/city-nyc.jpg" alt="lights" width="400" height="400">
-        <div class="card-text">
-          <h3>Challenges in Miami</h3>
-        </div>
-      
-      
-      
-    </div>
-  </div> -->
-
-
-
-
-
 {% endblock %}
