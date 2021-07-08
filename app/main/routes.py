@@ -94,7 +94,7 @@ def edit(post_id):
             'post': post_to_show
         }
 
-        return render_template('edit.html', **context)
+        return render_template('edit_post.html', **context)
 
 
 @ main.route('/post/<post_id>')
@@ -146,4 +146,4 @@ def delete(post_id):
         '_id': ObjectId(post_id)
     })
 
-    return redirect(url_for('post_detail', post_id=post_id))
+    return render_template('home.html')
