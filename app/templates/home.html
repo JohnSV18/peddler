@@ -4,12 +4,16 @@
   <!-- Items -->
   <div id = "items">
     {% for post in posts%}
-    <div class="card mb-4 md-2 m-5 lg-6">
-            {{post.post_title}}
+    <div class="mr-5">
+      <div class="card-block mr-5">
+        <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
+        <h5 class="card-title">     {{post.post_title}}   </h5>
             {{post.location}}
             {{post.post_description}}
             {{post.long_description}}
+            <a href="/post/{{ post._id }}">Details</a>
 
+        </div>
     </div>
     {% endfor %}
   </div>
@@ -22,6 +26,7 @@
             <img class="card-img-top" src="/app/static/city-nyc.jpg" alt="Card image cap">
             <h5 class="card-title">Card title</h5>
             <p class="card-text">location</p>
+
           </div>
        </div>
       </div>
