@@ -144,10 +144,10 @@ def edit_album(post_id):
         return render_template('edit_album.html', **context)
 
 
-@ app.route('/delete/<post_id>', methods=['POST'])
+@ main.route('/delete/<post_id>', methods=['POST'])
 def delete(post_id):
     mongo.db.workouts_data.delete_one({
         '_id': ObjectId(post_id)
     })
 
-    return render_template('home.html')
+    return redirect(url_for('main.home'))

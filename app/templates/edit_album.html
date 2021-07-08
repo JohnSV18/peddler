@@ -1,11 +1,22 @@
+{% extends 'base.html' %}
 
-<div class = "container">
-  
-    <form method='POST'>
-       
-        <label for="img">Select image:</label>
-        <input type="file" id="img" name="new_picture" accept="image/*">
-        <input type="submit">
-    </form>
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row row-cols-md-3 g-4 justify-content-center">
+        <div class="card text-center">
+            <form method='POST'>
+                <div class="m-3">
+                    
+                    <input type="file" class="form-label form-control p-2" id="img" name="new_picture" accept="image/*">
+                    <div id="emailHelp" class="form-text">Upload your best shot!</div>
+                </div>
+                
+                    <button class="btn btn-secondary mb-3" type="submit">Submit Post</button>
+                
+            </form>
+        </div>
+    </div>
 </div>
 
+{% endblock %}
