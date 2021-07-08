@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  Items
+  <div id = "items">
+    {% for post in posts%}
+    <div class="card mb-4 md-2 m-5 lg-6">
+            {{post.post_title}}
+            {{post.location}}
+            {{post.post_description}}
+            {{post.long_description}}
 
-
-
+    </div>
+    {% endfor %}
+  </div>
 
   <div class="container">
     <div class="row m-5">

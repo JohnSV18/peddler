@@ -40,6 +40,8 @@ def create():
     location = request.form.get('location')
     post_description = request.form.get('post_description')
     post_long_description = request.form.get('post_long_description')
+    # album=[]
+    # album.append()
 
     if request.method == 'POST':
         new_post = {
@@ -47,13 +49,14 @@ def create():
             'location': location,
             'post_description': post_description,
             'post_long_description': post_long_description
+            # album:album
 
         }
 
         result = mongo.db.posts.insert_one(new_post)
         inserted_id = result.inserted_id
 
-        return redirect(url_for('detail', post_id=inserted_id))
+        return render_template('home.html')
 
     else:
         return render_template('create_post.html')
@@ -67,7 +70,7 @@ def edit(post_id):
         post_description = request.form.get('post_description')
         post_long_description = request.form.get('post_long_description')
 
-        mongo.db.workouts_data.update_one({
+        mongo.db.posts.update_one({
             '_id': ObjectId(post_id),
 
         },
