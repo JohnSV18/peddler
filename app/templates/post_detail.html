@@ -4,10 +4,10 @@
 <div class="container mt-5">
     <div class="row row-cols-md-3 g-4 justify-content-center">
         <div class="card text-center">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{post.post_url}}" class="card-img-top" alt="...">
             <div class="card-body">
-            <h5 class="card-title">{{post_id.post_title}}</h5>
-            <p class="card-text">{{post_id.post_description}}</p>
+            <h5 class="card-title">{{post.post_title}}</h5>
+            <p class="card-text">{{post.post_description}}</p>
             </div>
             <ul class="list-group list-group-flush">
             <li class="list-group-item">{{post.location}}</li>
