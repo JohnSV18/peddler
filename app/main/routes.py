@@ -41,6 +41,13 @@ def create():
     location = request.form.get('location')
     post_description = request.form.get('post_description')
     post_long_description = request.form.get('post_long_description')
+    counter = 0
+    pictureArr = []
+    for item in range(30):
+        if request.form.get(f'{item}') == None:
+            break
+        elif request.form.get(f'{item}') != None:
+            pictureArr.append(request.form.get(f'{item}'))
 
     if request.method == 'POST':
         new_post = {
@@ -49,12 +56,20 @@ def create():
             'location': location,
             'post_description': post_description,
             'post_long_description': post_long_description,
-            'post_album': {"picture": ""}
+            'post_album': []
 
         }
 
         result = mongo.db.posts.insert_one(new_post)
         inserted_id = result.inserted_id
+        for item in range(30):
+            if request.form.get(f'{item}') == None:
+                break
+            elif request.form.get(f'{item}') != None:
+                mongo.db.posts.update({"_id": ObjectId(result.inserted_id)},
+                                      {
+                    "$push": {"post_album": {"picture": request.form.get(f'{item}')}}
+                })
 
         return redirect(url_for('main.detail', post_id = inserted_id))
 
@@ -78,7 +93,7 @@ def edit(post_id):
             {
             '$set': {
                 '_id': ObjectId(post_id),
-                'post_url' : post_url,
+                'post_url': post_url,
                 'post_title': post_title,
                 'location': location,
                 'post_description': post_description,
@@ -113,6 +128,18 @@ def detail(post_id):
     return render_template('post_detail.html', **context)
 
 
+@ main.route('/album/<post_id>')
+def album_detail(post_id):
+    post_to_show = mongo.db.posts.find_one({
+        '_id': ObjectId(post_id)
+    })
+    context = {
+        'post_id': ObjectId(post_id),
+        'post': post_to_show
+    }
+    return render_template('post_detail.html', **context)
+
+
 @ main.route('/edit/album/<post_id>', methods=["GET", "POST"])
 def edit_album(post_id):
     if request.method == "POST":
@@ -121,16 +148,20 @@ def edit_album(post_id):
             '_id': ObjectId(post_id)
         })
 
-        mongo.db.posts.update({"_id": ObjectId(post_id)},
-                              {
-            "$push": {"post_album": {"picture": new_picture}}
-        })
+        mongo.db.posts.update(
+            {"_id": ObjectId(post_id)},
+            {
+                "$push": {
+                    "post_album": {"picture": new_picture}
+                }
+            })
 
         context = {
             "post": album_var
         }
 
-        return render_template('show_album.html', **context)
+        # return render_template('show_album.html', **context)
+        return redirect(url_for('main.album_detail', post_id=post_id))
     else:
 
         post_to_show = mongo.db.posts.find_one({
