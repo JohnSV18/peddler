@@ -93,7 +93,7 @@ def edit(post_id):
             {
             '$set': {
                 '_id': ObjectId(post_id),
-                'post_url' : post_url,
+                'post_url': post_url,
                 'post_title': post_title,
                 'location': location,
                 'post_description': post_description,
@@ -128,6 +128,18 @@ def detail(post_id):
     return render_template('post_detail.html', **context)
 
 
+@ main.route('/album/<post_id>')
+def album_detail(post_id):
+    post_to_show = mongo.db.posts.find_one({
+        '_id': ObjectId(post_id)
+    })
+    context = {
+        'post_id': ObjectId(post_id),
+        'post': post_to_show
+    }
+    return render_template('post_detail.html', **context)
+
+
 @ main.route('/edit/album/<post_id>', methods=["GET", "POST"])
 def edit_album(post_id):
     if request.method == "POST":
@@ -136,16 +148,20 @@ def edit_album(post_id):
             '_id': ObjectId(post_id)
         })
 
-        mongo.db.posts.update({"_id": ObjectId(post_id)},
-                              {
-            "$push": {"post_album": {"picture": new_picture}}
-        })
+        mongo.db.posts.update(
+            {"_id": ObjectId(post_id)},
+            {
+                "$push": {
+                    "post_album": {"picture": new_picture}
+                }
+            })
 
         context = {
             "post": album_var
         }
 
-        return render_template('show_album.html', **context)
+        # return render_template('show_album.html', **context)
+        return redirect(url_for('main.album_detail', post_id=post_id))
     else:
 
         post_to_show = mongo.db.posts.find_one({
