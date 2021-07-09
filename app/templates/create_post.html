@@ -32,6 +32,11 @@
                         <input type="text" class="form-control" name="post_long_description" placeholder="Enter Details" aria-label="Details" aria-describedby="button-addon2">
                     </div>
                 </div>   
+                <div id = "listener">
+                    <div id = "start">
+                        Click Here to Add Another Photo
+                    </div>
+                </div>
                 <div class="p-3 ">
                     <button class="btn btn-secondary" type="submit">Submit Post</button>
                 <!-- <button class="btn btn-outline-secondary" type="submit" id="button-addon2">check</button> -->
@@ -39,8 +44,24 @@
             
             </form>
         </div>
+       
     </div> 
 </div>
+<script>
+    var counter=0
+
+    function run (){
+        outer_div = document.getElementById("listener")
+        var file = document.createElement("INPUT");  //create new div
+        file.setAttribute("type", "file");
+        file.innerHTML = 'click me';
+        file.setAttribute("name",counter)
+        outer_div.appendChild(file);                    //append the new div to clicked div
+        counter=counter+1
+
+    }
+    document.getElementById("start").addEventListener("click", run);  
+</script>
 
 
 

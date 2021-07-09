@@ -41,6 +41,13 @@ def create():
     location = request.form.get('location')
     post_description = request.form.get('post_description')
     post_long_description = request.form.get('post_long_description')
+    counter = 0
+    pictureArr = []
+    for item in range(30):
+        if request.form.get(f'{item}') == None:
+            break
+        elif request.form.get(f'{item}') != None:
+            pictureArr.append(request.form.get(f'{item}'))
 
     if request.method == 'POST':
         new_post = {
@@ -49,12 +56,20 @@ def create():
             'location': location,
             'post_description': post_description,
             'post_long_description': post_long_description,
-            'post_album': {"picture": ""}
+            'post_album': []
 
         }
 
         result = mongo.db.posts.insert_one(new_post)
         inserted_id = result.inserted_id
+        for item in range(30):
+            if request.form.get(f'{item}') == None:
+                break
+            elif request.form.get(f'{item}') != None:
+                mongo.db.posts.update({"_id": ObjectId(result.inserted_id)},
+                                      {
+                    "$push": {"post_album": {"picture": request.form.get(f'{item}')}}
+                })
 
         return render_template('post_detail.html', post_id=inserted_id)
 
