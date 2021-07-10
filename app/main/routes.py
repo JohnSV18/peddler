@@ -137,7 +137,7 @@ def album_detail(post_id):
         'post_id': ObjectId(post_id),
         'post': post_to_show
     }
-    return render_template('post_detail.html', **context)
+    return render_template('show_album.html', **context)
 
 
 @ main.route('/edit/album/<post_id>', methods=["GET", "POST"])

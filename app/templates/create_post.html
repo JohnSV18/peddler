@@ -16,6 +16,10 @@
                         <!-- <label for="validationCustom01" class="form-label">Post Title</label> -->
                         <input type="text" class="form-control" name="post_title" placeholder="Post Title" aria-label="Album Name" aria-describedby="button-addon2">
                     </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                      </div>
                     
                     <div class="p-2 ">
                         <!-- <label for="validationCustom01" class="form-label">Location</label> -->
@@ -53,7 +57,7 @@
     function run (){
         outer_div = document.getElementById("listener")
         var file = document.createElement("INPUT");  //create new div
-        file.setAttribute("type", "file");
+        file.setAttribute("type", "url");
         file.innerHTML = 'click me';
         file.setAttribute("name",counter)
         outer_div.appendChild(file);                    //append the new div to clicked div
