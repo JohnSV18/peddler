@@ -35,7 +35,8 @@ Mongo DB database
 
 ***
 
-## Project Link:
+## Other Project Links:
+[Medium Article](https://andrea-graziosi.medium.com/cyclik-an-application-that-will-change-the-way-we-travel-f3629e66855c)
 
 ***
 
