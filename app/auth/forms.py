@@ -6,7 +6,7 @@ from app.auth.models import User
 class SignUpForm(FlaskForm):
     username = StringField('User Name', validators=[DataRequired(), Length(min=3, max=50)])
     password = PasswordField('Password', validators=[DataRequired()])
-    submit = SubmitField('Sign Up')
+    # submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
