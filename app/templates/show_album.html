@@ -13,8 +13,9 @@ This page will render all of the cards created from posts made by the user  -->
      
         {% for item in post.post_album %}
 
-        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
-            <img src = "{{item.picture}}" class="card-img-top" alt="...">
+        <div class="text-dark bg-light mb-3" style="max-width: 18rem;">
+            <img src ="{{item.picture}}" alt="...">
+            {{item.picture}}
         </div>
         {% endfor %}
     </div>
