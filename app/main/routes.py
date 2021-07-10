@@ -71,7 +71,7 @@ def create():
                     "$push": {"post_album": {"picture": request.form.get(f'{item}')}}
                 })
 
-        return redirect(url_for('main.detail', post_id = inserted_id))
+        return redirect(url_for('main.detail', post_id=inserted_id))
 
     else:
         return render_template('create_post.html')
@@ -102,7 +102,7 @@ def edit(post_id):
             }
         })
 
-        return redirect(url_for('post_detail', post_id=post_id))
+        return redirect(url_for('main.detail', post_id=post_id))
     else:
 
         post_to_show = mongo.db.posts.find_one({
@@ -177,7 +177,7 @@ def edit_album(post_id):
 
 @ main.route('/delete/<post_id>', methods=['POST'])
 def delete(post_id):
-    mongo.db.workouts_data.delete_one({
+    mongo.db.posts.delete_one({
         '_id': ObjectId(post_id)
     })
 
