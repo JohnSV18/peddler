@@ -7,33 +7,29 @@
         <div class="card text-center" style="width: 18rem;">
             <form method="POST">
                 <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Upload your picture</label> -->
+                    <div class="form-floating mb-2">
                         <input type="url" class="form-control" name="post_url" placeholder="upload url" aria-label="Upload picture" aria-describedby="button-addon2">
+                        <label for="floatingInput">Post URL</label>
                     </div>
                 
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Post Title</label> -->
-                        <input type="text" class="form-control" name="post_title" placeholder="Post Title" aria-label="Album Name" aria-describedby="button-addon2">
+                    <div class="form-floating mb-2 mt-2">
+                        <input type="text" class="form-control" id="floatingInput" name="post_title" placeholder="Post Title" aria-label="Album Name" aria-describedby="button-addon2">
+                        <label for="floatingInput">Post Title</label>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Email address</label>
-                      </div>
-                    
-                    <div class="p-2 ">
-                        <!-- <label for="validationCustom01" class="form-label">Location</label> -->
+ 
+                    <div class="form-floating mb-2 mt-2 ">
                         <input type="text" class="form-control" name="location" placeholder="Location" aria-label="Where was this?" aria-describedby="button-addon2">
+                        <label for="floatingInput">Location</label>
                     </div>
                     
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Short Description</label> -->
+                    <div class="form-floating mb-2 mt-2">
                         <input type="text" class="form-control" name="post_description" placeholder="Short description" aria-label="Quick description" aria-describedby="button-addon2">
+                        <label for="floatingInput">Short Description</label>
                     </div>
                     
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Details</label> -->
+                    <div class="form-floating mt-2">
                         <input type="text" class="form-control" name="post_long_description" placeholder="Enter Details" aria-label="Details" aria-describedby="button-addon2">
+                        <label for="floatingInput">Long description</label>
                     </div>
                 </div>   
                 <div id = "listener">

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, DateField, SelectField, SubmitField, FloatField, PasswordField
 from wtforms.validators import DataRequired, Length, URL, ValidationError
-# from car_app.models import User
+from app.auth.models import User
 
 class SignUpForm(FlaskForm):
     username = StringField('User Name', validators=[DataRequired(), Length(min=3, max=50)])
