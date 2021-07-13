@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% block content %}
 
@@ -11,19 +10,19 @@
                     {{ form.csrf_token }}
 
                     <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
-                        <div class="p-2">
+                        <!--<div class="p-2">
                             <input type="url" class="form-control" name="username" value="">
                         </div>
                         <div class="p-2">
                             <input type="text" class="form-control"  name="password" value="">
-                        </div>
-                        <!-- <div class="p-2">
+                        </div>-->
+                        <div class="p-2">
                             {{ form.username }}
                         </div>
                         <div class="p-2">
                             {{ form.password }}
                             {{ form.hidden_tag() }}
-                        </div> -->
+                        </div> 
                         
                         <div class="pt-2">
                             <!-- <input type="submit" class="submit" value="Edit"> -->

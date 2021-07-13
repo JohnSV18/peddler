@@ -1,16 +1,19 @@
 from flask import request, redirect, render_template, url_for, Blueprint, Flask
 from bson.objectid import ObjectId
 from flask_pymongo import PyMongo
-# from flask_mongoengine import MongoEngine
+from flask_mongoengine import MongoEngine
+#from cyclick_app.auth.auth_routes import *
 import os
 
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
-# app.config["MONGODB_SETTINGS"] = {
-#     "db": "peddlerdb",
-#     "host": "mongodb://127.0.0.1:27017/peddlerdb"
-# }
+#app.secret_key = os.urandom(24)
+#app.config['SECRET_KEY'] = 'any secret string'
+
+app.config["MONGODB_SETTINGS"] = {
+    "db": "peddlerdb",
+    "host": "mongodb://127.0.0.1:27017/peddlerdb"
+}
 
 ############################################################
 # SETUP
@@ -18,6 +21,7 @@ app.secret_key = os.urandom(24)
 main = Blueprint('main', __name__)
 app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
 mongo = PyMongo(app)
+db = MongoEngine(app)
 
 ############################################################
 # ROUTES
@@ -52,6 +56,7 @@ def create():
 
     if request.method == 'POST':
         new_post = {
+            # 'user_id' : current_user.id,
             'post_url': post_url,
             'post_title': post_title,
             'location': location,
