@@ -14,20 +14,23 @@ app = Flask(__name__)
 #SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
 #SQLALCHEMY_TRACK_MODIFICATIONS = False
 #SECRET_KEY = os.getenv('any secret string')
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.urandom(32)
+# print(fdsafdsfdsfds)
 
 
-app.config["MONGODB_SETTINGS"] = {
-    "db": "peddlerdb",
-    "host": "mongodb://127.0.0.1:27017/peddlerdb",
-    # "SECRET_KEY": "os.getenv('any secret string')"
-}
+# app.config["MONGODB_SETTINGS"] = {
+#  "db": "peddlerdb",
+#   "host": "mongodb://127.0.0.1:27017/peddlerdb",
+# "SECRET_KEY": "os.getenv('any secret string')"
+# }
 
 ############################################################
 # SETUP
 ############################################################
 main = Blueprint('main', __name__)
+
 app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
+
 mongo = PyMongo(app)
 db = MongoEngine(app)
 

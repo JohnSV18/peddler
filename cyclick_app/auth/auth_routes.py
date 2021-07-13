@@ -12,20 +12,23 @@ auth = Blueprint('auth', __name__)
 #app.config['SESSION_TYPE'] = 'filesystem'
 # app.config.update(SECRET_KEY=os.urandom(24))
 
+# @csrf.exempt
+
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
     form = SignUpForm()
     if request.method == 'POST':
-        if form.validate():
-            existing_user = User.objects(email=form.email.data).first()
+        if form.validate_on_submit():
+            existing_user = User.objects(username=form.username.data).first()
             if existing_user is None:
                 hashpass = generate_password_hash(
                     form.password.data, method='sha256')
-                user = User(form.email.data, hashpass).save()
+                user = User(form.username.data, hashpass).save()
                 login_user(user)
                 return redirect(url_for('auth.login'))
-    return render_template('signup.html', form=form)
+    elif request.method == 'GET':
+        return render_template('signup.html', form=form)
 
 # @auth.route('/signup', methods=['GET', 'POST'])
 # def signup():

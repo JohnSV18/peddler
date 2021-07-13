@@ -8,38 +8,44 @@
                 <h5 class="card-title">Cyclik</h5>
                 <form action="/signup" method="POST">
                     {{ form.csrf_token }}
-
-                    <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
-                        <!--<div class="p-2">
-                            <input type="url" class="form-control" name="username" value="">
-                        </div>
-                        <div class="p-2">
-                            <input type="text" class="form-control"  name="password" value="">
-                        </div>-->
-                        <div class="p-2">
-                            {{ form.username }}
-                        </div>
-                        <div class="p-2">
-                            {{ form.password }}
-                            {{ form.hidden_tag() }}
-                        </div> 
-                        
-                        <div class="pt-2">
-                            <!-- <input type="submit" class="submit" value="Edit"> -->
-                            {{ form.submit }}
-
-                            <!-- <button class="btn btn-secondary" value="Edit" type="submit">Sign-up</button> -->
-                        </div>
-                    </div>
+                    <fieldset>
+                        <legend>Enter your credentials</legend>
+                
+                        {{ form.username.label }}
+                        {{ form.username }}
+                        <ul>
+                        {% for error in form.username.errors %}
+                            <li class="error">{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                
+                        {{ form.password.label }}
+                        {{ form.password }}
+                        <ul>
+                        {% for error in form.password.errors %}
+                            <li class="error">{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                
+                        {{ form.submit }}
+                    </fieldset>
                 </form>
+                
             </div>
         </div>
     </div>  
+
+</div>
+
+{% endblock content %}
+
+
+<!-- <h1>Sign Up</h1>
     <div class="row justify-content-center">
         <div class="card m-2" style="width: 18rem;">
             <form action="" method='POST'>
                 <div class=" m-3 text-center">
-                    <!-- <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post"> -->
+                  <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post">
                     <div id="emailHelp" class="form-text">If you already have an account</div>
                     <a href="#" class="btn btn-primary">login</a>
                     
@@ -47,14 +53,6 @@
             </form>
         
         </div>
-    </div>  
-</div>
-
-{% endblock content %}
-
-
-<!-- <h1>Sign Up</h1>
-
 <form action="/signup" method="POST">
     {{ form.csrf_token }}
     <fieldset>
