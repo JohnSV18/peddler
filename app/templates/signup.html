@@ -11,22 +11,24 @@
                     {{ form.csrf_token }}
 
                     <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
-                        <div class="p-2">
+                        <!-- <div class="p-2">
                             <input type="url" class="form-control" name="full-name" value="">
                         </div>
                         <div class="p-2">
                             <input type="text" class="form-control"  name="user-name" value="">
+                        </div> -->
+                        <div class="p-2">
+                            {{ form.username }}
                         </div>
                         <div class="p-2">
-                            <input type="text" class="form-control"  name="email" value="">
-                        </div>
-                        <div class="p-2">
-                            <input type="text" class="form-control"  name="password" value="">
+                            {{ form.password }}
+                            {{ form.hidden_tag() }}
                         </div>
                         
                         <div class="pt-2">
                             <!-- <input type="submit" class="submit" value="Edit"> -->
-                            <button class="btn btn-secondary" value="Edit" type="submit">Sign-up</button>
+                            <input type="submit" value="Submit">
+                            <!-- <button class="btn btn-secondary" value="Edit" type="submit">Sign-up</button> -->
                         </div>
                     </div>
                 </form>
