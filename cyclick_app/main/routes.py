@@ -7,12 +7,20 @@ import os
 
 
 app = Flask(__name__)
-#app.secret_key = os.urandom(24)
 #app.config['SECRET_KEY'] = 'any secret string'
+# class Config(object):
+#"""Set environment variables."""
+
+#SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+#SQLALCHEMY_TRACK_MODIFICATIONS = False
+#SECRET_KEY = os.getenv('any secret string')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
 
 app.config["MONGODB_SETTINGS"] = {
     "db": "peddlerdb",
-    "host": "mongodb://127.0.0.1:27017/peddlerdb"
+    "host": "mongodb://127.0.0.1:27017/peddlerdb",
+    # "SECRET_KEY": "os.getenv('any secret string')"
 }
 
 ############################################################

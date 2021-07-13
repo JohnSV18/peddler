@@ -9,6 +9,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 auth = Blueprint('auth', __name__)
 # bycrypt = Bcrypt(app)
 
+#app.config['SESSION_TYPE'] = 'filesystem'
+# app.config.update(SECRET_KEY=os.urandom(24))
+
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
@@ -21,7 +24,7 @@ def register():
                     form.password.data, method='sha256')
                 user = User(form.email.data, hashpass).save()
                 login_user(user)
-                return redirect(url_for('auth.register'))
+                return redirect(url_for('auth.login'))
     return render_template('signup.html', form=form)
 
 # @auth.route('/signup', methods=['GET', 'POST'])
