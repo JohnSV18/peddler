@@ -1,23 +1,17 @@
 from flask import request, redirect, render_template, url_for, Blueprint, Flask
 from bson.objectid import ObjectId
-from flask_pymongo import PyMongo
 # from flask_mongoengine import MongoEngine
+from cyclick_app import db
 import os
 
 
-app = Flask(__name__)
-app.secret_key = os.urandom(24)
-# app.config["MONGODB_SETTINGS"] = {
-#     "db": "peddlerdb",
-#     "host": "mongodb://127.0.0.1:27017/peddlerdb"
-# }
 
 ############################################################
 # SETUP
 ############################################################
 main = Blueprint('main', __name__)
-app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
-mongo = PyMongo(app)
+# app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
+
 
 ############################################################
 # ROUTES
@@ -26,7 +20,7 @@ mongo = PyMongo(app)
 
 @main.route('/')
 def home():
-    posts_data = mongo.db.posts.find({})
+    posts_data = db.posts.find({})
 
     context = {
         'posts': posts_data,
@@ -61,13 +55,13 @@ def create():
 
         }
 
-        result = mongo.db.posts.insert_one(new_post)
+        result = db.posts.insert_one(new_post)
         inserted_id = result.inserted_id
         for item in range(30):
             if request.form.get(f'{item}') == None:
                 break
             elif request.form.get(f'{item}') != None:
-                mongo.db.posts.update({"_id": ObjectId(result.inserted_id)},
+                db.posts.update({"_id": ObjectId(result.inserted_id)},
                                       {
                     "$push": {"post_album": {"picture": request.form.get(f'{item}')}}
                 })
@@ -87,7 +81,7 @@ def edit(post_id):
         post_description = request.form.get('post_description')
         post_long_description = request.form.get('post_long_description')
 
-        mongo.db.posts.update_one({
+        db.posts.update_one({
             '_id': ObjectId(post_id),
 
         },
@@ -106,7 +100,7 @@ def edit(post_id):
         return redirect(url_for('main.detail', post_id=post_id))
     else:
 
-        post_to_show = mongo.db.posts.find_one({
+        post_to_show = db.posts.find_one({
             '_id': ObjectId(post_id)
         })
 
@@ -119,7 +113,7 @@ def edit(post_id):
 
 @ main.route('/post/<post_id>')
 def detail(post_id):
-    post_to_show = mongo.db.posts.find_one({
+    post_to_show = db.posts.find_one({
         '_id': ObjectId(post_id)
     })
     context = {
@@ -131,7 +125,7 @@ def detail(post_id):
 
 @ main.route('/album/<post_id>')
 def album_detail(post_id):
-    post_to_show = mongo.db.posts.find_one({
+    post_to_show = db.posts.find_one({
         '_id': ObjectId(post_id)
     })
     context = {
@@ -145,11 +139,11 @@ def album_detail(post_id):
 def edit_album(post_id):
     if request.method == "POST":
         new_picture = request.form.get('new_picture')
-        album_var = mongo.db.posts.find_one({
+        album_var = db.posts.find_one({
             '_id': ObjectId(post_id)
         })
 
-        mongo.db.posts.update(
+        db.posts.update(
             {"_id": ObjectId(post_id)},
             {
                 "$push": {
@@ -165,7 +159,7 @@ def edit_album(post_id):
         return redirect(url_for('main.album_detail', post_id=post_id))
     else:
 
-        post_to_show = mongo.db.posts.find_one({
+        post_to_show = db.posts.find_one({
             '_id': ObjectId(post_id)
         })
 
@@ -178,7 +172,7 @@ def edit_album(post_id):
 
 @ main.route('/delete/<post_id>', methods=['POST'])
 def delete(post_id):
-    mongo.db.posts.delete_one({
+    db.posts.delete_one({
         '_id': ObjectId(post_id)
     })
 

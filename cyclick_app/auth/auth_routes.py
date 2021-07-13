@@ -1,7 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for
-from cyclick_app.auth.models import User
+from ..models import User
 from cyclick_app.auth.forms import SignUpForm
-from flask_login import login_required, login_user, logout_user, current_user
+from flask_login import login_user
 # from flask_bcrypt import Bcrypt
 # from cyclick_app import app
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,12 +14,15 @@ def register():
     form = SignUpForm()
     if request.method == 'POST':
         if form.validate():
-            existing_user = User.objects(email=form.email.data).first()
+            print(form.username.data)
+            existing_user = User.objects(username=form.username.data).first()
             if existing_user is None:
                 hashpass = generate_password_hash(form.password.data, method='sha256')
-                user = User(form.email.data, hashpass).save()
-                login_user(user)
-                return redirect(url_for('main.home'))
+                user = User(username=form.username.data, password=hashpass)
+                user.save()
+                print(user.pk)
+                return redirect(url_for('auth.register'))
+    print("NOTHING")
     return render_template('signup.html', form=form)
 
 # @auth.route('/signup', methods=['GET', 'POST'])

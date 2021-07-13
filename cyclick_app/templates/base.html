@@ -23,8 +23,12 @@
             <button class="btn btn-secondary btn-light btn-sm" type="submit">Search</button>
           </form>
           <form class="form-inline">
+            {% if current_user %}
+            <button type="button" class="btn btn-link text-secondary">Log Out</button>
+            {% else %}
             <button type="button" class="btn btn-link text-secondary">Log In</button>
             <button class="btn btn-secondary btn-light btn-sm" type="submit">Sign Up</button>
+            {% endif %}
           </form>
         </div>
     </nav>
