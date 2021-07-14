@@ -4,5 +4,5 @@ from cyclick_app.main.routes import *
 
 
 class User(UserMixin, db.Document):
-    email = db.StringField(max_length=30)
+    username = db.StringField(max_length=30)
     password = db.StringField()

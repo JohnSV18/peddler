@@ -17,6 +17,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
+    username=request.form.get('username')
     form = SignUpForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -43,19 +44,19 @@ def register():
 #         return 'That username already exists!'
 #     return render_template('signup.html')
 
-# @auth.route('/login', methods=['GET', 'POST'])
-# def login():
-#     if current_user.is_authenticated == True:
-#         return redirect(url_for('main.home'))
-#     form = SignUpForm()
-#     if request.method == 'POST':
-#         if form.validate():
-#             check_user = User.objects(email=form.email.data).first()
-#             if check_user:
-#                 if check_password_hash(check_user['password'], form.password.data):
-#                     login_user(check_user)
-#                     return redirect(url_for('main.home'))
-#     return render_template('login.html', form=form)
+@auth.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated == True:
+        return redirect(url_for('main.home'))
+    form = SignUpForm()
+    if request.method == 'POST':
+        if form.validate():
+            check_user = User.objects(username=form.username.data).first()
+            if check_user:
+                if check_password_hash(check_user['password'], form.password.data):
+                    login_user(check_user)
+                    return redirect(url_for('main.home'))
+    return render_template('login.html', form=form)
 
 # @auth.route('/logout')
 # @login_required
