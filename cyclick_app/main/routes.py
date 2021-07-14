@@ -7,16 +7,6 @@ import os
 
 
 app = Flask(__name__)
-#app.config['SECRET_KEY'] = 'any secret string'
-# class Config(object):
-#"""Set environment variables."""
-
-#SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
-#SQLALCHEMY_TRACK_MODIFICATIONS = False
-#SECRET_KEY = os.getenv('any secret string')
-SECRET_KEY = os.urandom(32)
-# print(fdsafdsfdsfds)
-
 
 # app.config["MONGODB_SETTINGS"] = {
 #  "db": "peddlerdb",
@@ -49,6 +39,8 @@ def home():
 
     return render_template('home.html', **context)
 
+# @login_required
+
 
 @main.route('/createpost', methods=["GET", "POST"])
 def create():
@@ -67,7 +59,7 @@ def create():
 
     if request.method == 'POST':
         new_post = {
-            # 'user_id' : current_user.id,
+            # 'user_id': current_user.id,
             'post_url': post_url,
             'post_title': post_title,
             'location': location,
