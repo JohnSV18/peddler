@@ -1,7 +1,5 @@
-
-from flask_login import login_manager, UserMixin
-from flask_mongoengine import MongoEngine
-from cyclick_app.main.routes import *
+from flask_login import UserMixin
+from cyclick_app.main.routes import db
 
 
 class User(UserMixin, db.Document):

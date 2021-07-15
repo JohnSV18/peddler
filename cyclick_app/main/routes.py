@@ -6,9 +6,7 @@ from flask_mongoengine import MongoEngine
 #from cyclick_app.auth.auth_routes import *
 import os
 
-
 app = Flask(__name__)
-
 # app.config["MONGODB_SETTINGS"] = {
 #  "db": "peddlerdb",
 #   "host": "mongodb://127.0.0.1:27017/peddlerdb",
@@ -22,9 +20,9 @@ main = Blueprint('main', __name__)
 
 # app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
 
+
 host = os.environ.get("MONGODB_URI", "mongodb+srv://johndoe:12345@cyclick.h18wa.mongodb.net/peddlerdb") + "?retryWrites=false"
 app.config["MONGO_URI"] = host
-
 mongo = PyMongo(app)
 db = MongoEngine(app)
 

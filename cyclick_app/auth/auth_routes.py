@@ -2,8 +2,6 @@ from flask import Blueprint, request, render_template, redirect, url_for
 from cyclick_app.auth.models import User
 from cyclick_app.auth.forms import SignUpForm
 from flask_login import login_required, login_user, logout_user, current_user
-# from flask_bcrypt import Bcrypt
-#from cyclick_app.main.routes import *
 from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
@@ -29,19 +27,6 @@ def register():
 @login_required
 def authenticated():
     return render_template('home.html', name=current_user.username)
-# @auth.route('/signup', methods=['GET', 'POST'])
-# def signup():
-#     if request.method == 'POST':
-#         users = mongo.db.users
-#         existing_user = users.find_one({'name' : request.form['username']})
-#         if existing_user is None:
-#             hashpass = bycrypt.hashpw(request.form['password'], bycrypt.genSalt())
-#             users.insert({'name' : request.form['username'], 'password': hashpass})
-#             session['username'] = request.form['username']
-#             return redirect(url_for('main.home'))
-#         return 'That username already exists!'
-#     return render_template('signup.html')
-
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
