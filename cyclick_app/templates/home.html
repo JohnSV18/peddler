@@ -6,37 +6,37 @@
   
   <div class="container mt-5">
     <div class="page-header text-center m-5">
-      <h2>Share your adventures <small>where will you go next?</small></h2>
+      <h2>Share your adventures,<small> where will you go next?</small></h2>
       </div>
     <div class="card  text-white border-0 m-5">
         <video src="https://www.outsideonline.com/wp-content/uploads/2019/03/20/bikes_loop_720.mp4" class="embed-responsive embed-responsive-16by9" type="video/mp4" playsinline="true" autoplay="true" muted="true" loop="true"></video>
         <div class="card-img-overlay border">
              
-          <h2 class="card-title">Cyclik</h2>
-          <!-- <h2 class="card-text">Inspire</h2>
-          <h2 class="card-text">Explore</h2>
-           -->
-          
+          <h2 class="card-title">Cyclick</h2>  
         </div>
       </div>
     <div class="row justify-content-center">
-        
-            {% for post in posts %}
-            
+      {% for post in posts %}
       <div class="card mb-3" id = "items" style="width: 18rem;">
         <div class="card-block m-2">
           <img class="card-img-top" src="{{post.post_url}}" alt="" width="250px" height="250px">
+          {% if current_user.is_authenticated %}
           <h5 class="card-title">{{post.post_title}}</h5>
-                 
-                  {{post.location}}
-                  {{post.post_description}}
-                  {{post.long_description}}
+            {{post.location}}
+            {{post.post_description}}
+            {{post.long_description}}
 
           <a class="text-secondary" href="/post/{{ post._id }}">Add More Details</a>
+          {% else %}
+          <h5 class="card-title"><a href="/post/{{ post._id }}">{{post.post_title}}</a></h5>
+            {{post.location}}
+            {{post.post_description}}
+            {{post.long_description}}
 
+          {% endif %}
         </div>
       </div>
-              {% endfor %}
+      {% endfor %}
     </div>
   </div> 
   

@@ -5,47 +5,42 @@
     <div class="row justify-content-center">
         <div class="card" style="width: 18rem;">
             <form method="POST">
-
                 <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
                     <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Upload your picture</label> -->
-                        <input type="url" value = "{{post.post_url}}"class="form-control" name="post_url" placeholder="upload url" aria-label="Upload picture" aria-describedby="button-addon2">
+                        <img class="card-img-top" src="{{post.post_url}}" alt="" width="250px" height="250px">
                     </div>
                 
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Post Title</label> -->
+                    <div class="form-floating mb-2 mt-2">
                         <input type="text" value = "{{post.post_title}}" class="form-control" name="post_title" placeholder="Post Title" aria-label="Album Name" aria-describedby="button-addon2">
+                        <label for="floatingInput">Post title</label>
                     </div>
            
-                    <div class="p-2 ">
-                        <!-- <label for="validationCustom01" class="form-label">Location</label> -->
+                    <div class="form-floating mb-2 mt-2">
                         <input type="text" value = "{{post.location}}" class="form-control" name="location" placeholder="Location" aria-label="Where was this?" aria-describedby="button-addon2">
+                        <label for="floatingInput">Location</label>
                     </div>
                     
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Short Description</label> -->
+                    <div class="form-floating mb-2 mt-2">
                         <input type="text" value = "{{post.post_description}}" class="form-control" name="post_description" placeholder="Short description" aria-label="Quick description" aria-describedby="button-addon2">
+                        <label for="floatingInput">Short description</label>
                     </div>
                     
-                    <div class="p-2">
-                        <!-- <label for="validationCustom01" class="form-label">Details</label> -->
+                    <div class="form-floating mb-2 mt-2">
                         <input type="text" value = "{{post.post_long_description}}" class="form-control" name="post_long_description" placeholder="Enter Details" aria-label="Details" aria-describedby="button-addon2">
+                        <label for="floatingInput">Long description</label>
                     </div>
                 </div>   
                     <div class="m-3 text-center">
-                        <!-- <input type="submit" class="submit" value="Edit"> -->
                         <button class="btn btn-secondary" value="Edit" type="submit">Edit Post</button>
                     </div>
-                </div>
-
             </form>
         </div>
-    </div>  
+    </div>
+</div>  
     <div class="row justify-content-center">
         <div class="card m-2" style="width: 18rem;">
             <form action="/delete/{{post._id}}" method='POST' id="delete-form" onsubmit="return confirm_delete()">
                 <div class=" m-3 text-center">
-                    <!-- <input type="submit" class="nav" onclick="delete_modal()" value="Delete Post"> -->
                     <button class="btn btn-secondary" onclick="delete_modal()" value="Delete Post" type="submit">Delete Post</button>
                 </div>
             </form>

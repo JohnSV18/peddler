@@ -12,11 +12,13 @@
             <ul class="list-group list-group-flush">
             <li class="list-group-item">{{post.location}}</li>
             <li class="list-group-item">{{post.post_long_description}}</li>
-            <!-- <li class="list-group-item">A third item</li> -->
             </ul>
+            {% if current_user.is_authenticated %}
             <div class="card-body">
                 <a class="nav text-secondary" href="/edit/{{post._id}}">Edit Post</a>
                 <a class="nav text-secondary" href="/edit/album/{{post._id}}">Edit Photo Album</a>
+            {% else %}
+            {% endif %}
               </div>
             </div>
 

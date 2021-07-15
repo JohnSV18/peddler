@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import Length, URL, InputRequired, ValidationError
+from wtforms.validators import Length, URL, InputRequired, DataRequired
 from cyclick_app.auth.models import User
 from cyclick_app.main.routes import *
 
@@ -24,7 +24,7 @@ class SignUpForm(FlaskForm):
     #        raise ValidationError(
     #            'That username is taken. Please choose a different one.')
 
-# class LoginForm(FlaskForm):
-#     username = StringField('User Name', validators=[DataRequired(), Length(min=3, max=50)])
-#     password = PasswordField('Password', validators=[DataRequired()])
-#     submit = SubmitField('Log In')
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired(), Length(min=3, max=50)])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Log In')

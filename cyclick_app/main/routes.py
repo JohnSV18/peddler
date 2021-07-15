@@ -1,5 +1,5 @@
 from flask import request, redirect, render_template, url_for, Blueprint, Flask
-from flask_login import current_user
+from flask_login import current_user, login_required
 from bson.objectid import ObjectId
 from flask_pymongo import PyMongo
 from flask_mongoengine import MongoEngine
@@ -7,19 +7,11 @@ from flask_mongoengine import MongoEngine
 import os
 
 app = Flask(__name__)
-# app.config["MONGODB_SETTINGS"] = {
-#  "db": "peddlerdb",
-#   "host": "mongodb://127.0.0.1:27017/peddlerdb",
-# "SECRET_KEY": "os.getenv('any secret string')"
-# }
 
 ############################################################
 # SETUP
 ############################################################
 main = Blueprint('main', __name__)
-
-# app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
-
 
 host = os.environ.get("MONGODB_URI", "mongodb+srv://johndoe:12345@cyclick.h18wa.mongodb.net/peddlerdb") + "?retryWrites=false"
 app.config["MONGO_URI"] = host
@@ -29,7 +21,6 @@ db = MongoEngine(app)
 ############################################################
 # ROUTES
 ############################################################
-
 
 @main.route('/')
 def home():
@@ -41,10 +32,9 @@ def home():
 
     return render_template('home.html', **context)
 
-# @login_required
-
 
 @main.route('/createpost', methods=["GET", "POST"])
+@login_required
 def create():
     post_url = request.form.get('post_url')
     post_title = request.form.get('post_title')
@@ -89,9 +79,10 @@ def create():
 
 
 @ main.route('/edit/<post_id>', methods=["GET", "POST"])
+@login_required
 def edit(post_id):
     if request.method == "POST":
-        post_url = request.form.get('post_url')
+        # post_url = request.form.get('post_url')
         post_title = request.form.get('post_title')
         location = request.form.get('location')
         post_description = request.form.get('post_description')
@@ -104,7 +95,6 @@ def edit(post_id):
             {
             '$set': {
                 '_id': ObjectId(post_id),
-                'post_url': post_url,
                 'post_title': post_title,
                 'location': location,
                 'post_description': post_description,
@@ -140,6 +130,7 @@ def detail(post_id):
 
 
 @ main.route('/album/<post_id>')
+@login_required
 def album_detail(post_id):
     post_to_show = mongo.db.posts.find_one({
         '_id': ObjectId(post_id)
@@ -152,6 +143,7 @@ def album_detail(post_id):
 
 
 @ main.route('/edit/album/<post_id>', methods=["GET", "POST"])
+@login_required
 def edit_album(post_id):
     if request.method == "POST":
         new_picture = request.form.get('new_picture')
@@ -185,8 +177,8 @@ def edit_album(post_id):
 
         return render_template('edit_album.html', **context)
 
-
 @ main.route('/delete/<post_id>', methods=['POST'])
+@login_required
 def delete(post_id):
     mongo.db.posts.delete_one({
         '_id': ObjectId(post_id)
