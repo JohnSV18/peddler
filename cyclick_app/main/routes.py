@@ -1,4 +1,5 @@
 from flask import request, redirect, render_template, url_for, Blueprint, Flask
+from flask_login import current_user
 from bson.objectid import ObjectId
 from flask_pymongo import PyMongo
 from flask_mongoengine import MongoEngine
@@ -59,7 +60,7 @@ def create():
 
     if request.method == 'POST':
         new_post = {
-            # 'user_id': current_user.id,
+            'user_id': current_user.id,
             'post_url': post_url,
             'post_title': post_title,
             'location': location,

@@ -7,12 +7,9 @@ from flask_login import login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
-# bycrypt = Bcrypt(app)
-
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
-    username = request.form.get('username')
     form = SignUpForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -22,8 +19,8 @@ def register():
                     form.password.data, method='sha256')
                 user = User(username=form.username.data,
                             password=hashpass).save()
-                login_user(user)
-                return redirect(url_for('auth.authenticated'))
+                # login_user(user)
+                return redirect(url_for('auth.login'))
 
     return render_template('signup.html', form=form)
 
@@ -31,7 +28,7 @@ def register():
 @auth.route('/authenticated')
 @login_required
 def authenticated():
-    return render_template('home.html', name=current_user.email)
+    return render_template('home.html', name=current_user.username)
 # @auth.route('/signup', methods=['GET', 'POST'])
 # def signup():
 #     if request.method == 'POST':

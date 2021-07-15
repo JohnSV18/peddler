@@ -6,22 +6,30 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">Cyclik login!</h5>
-                <form action="/signup" method="POST">
+                <form action="/login" method="POST">
                     {{ form.csrf_token }}
-
-                    <div class="input-group mb-3 card text-center border-0" style="padding-top: 2rem;">
-                        <div class="p-2">
-                            <input type="text" class="form-control"  name="email" value="">
-                        </div>
-                        <div class="p-2">
-                            <input type="text" class="form-control"  name="password" value="">
-                        </div>
-                        
-                        <div class="pt-2">
-                            <!-- <input type="submit" class="submit" value="Edit"> -->
-                            <button class="btn btn-secondary" value="Edit" type="submit">Login</button>
-                        </div>
-                    </div>
+                    <fieldset>
+                        <legend>Enter your credentials</legend>
+                
+                        {{ form.username.label }}
+                        {{ form.username }}
+                        <ul>
+                        {% for error in form.username.errors %}
+                            <li class="error">{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                
+                        {{ form.password.label }}
+                        {{ form.password }}
+                        <ul>
+                        {% for error in form.password.errors %}
+                            <li class="error">{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                
+                        <!-- {{ form.submit.label }} -->
+                        {{ form.submit }}
+                    </fieldset>
                 </form>
             </div>
         </div>
