@@ -2,7 +2,7 @@ from flask_login import login_manager, UserMixin
 from .db import get_db
 
 
-class User(UserMixin, get_db.Document):
+class User(UserMixin, db.Document):
     username = get_db.StringField(max_length=30)
     password = get_db.StringField()
 

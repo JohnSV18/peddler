@@ -1,4 +1,5 @@
 from flask import g, current_app
+
 def get_db():
     
     if "db" not in g:

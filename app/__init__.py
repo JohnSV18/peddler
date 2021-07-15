@@ -28,14 +28,14 @@ def create_app(**kwargs):
         pass
     
     # from . import db
-    from . import auth_routes
-    from . import routes
-    app.register_blueprint(routes.main_bp)
-    app.register_blueprint(auth_routes.bp)
+    # from . import auth_routes
+    # from . import routes
+    # app.register_blueprint(routes.main_bp)
+    # app.register_blueprint(auth_routes.bp)
     
-    # @app.route('/hello')
-    # def hello():
-    #     return "Hello, world!"
+    @app.route('/hello')
+    def hello():
+        return "Hello, world!"
     
     
     
