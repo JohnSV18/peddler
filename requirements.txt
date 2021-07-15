@@ -22,7 +22,6 @@ oauthlib==3.1.0
 package-name==0.1
 psycopg2-binary==2.8.6
 pycparser==2.20
-pygame==2.0.0.dev12
 pymongo==3.11.3
 python-dotenv==0.15.0
 requests==2.18.4
