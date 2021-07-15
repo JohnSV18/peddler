@@ -20,7 +20,10 @@ app = Flask(__name__)
 ############################################################
 main = Blueprint('main', __name__)
 
-app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
+# app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
+
+host = os.environ.get("MONGODB_URI", "mongodb+srv://johndoe:12345@cyclick.h18wa.mongodb.net/peddlerdb") + "?retryWrites=false"
+app.config["MONGO_URI"] = host
 
 mongo = PyMongo(app)
 db = MongoEngine(app)
@@ -60,7 +63,7 @@ def create():
 
     if request.method == 'POST':
         new_post = {
-            'user_id': current_user.id,
+            'user_id': current_user.get_id(),
             'post_url': post_url,
             'post_title': post_title,
             'location': location,
