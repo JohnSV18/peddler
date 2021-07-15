@@ -20,13 +20,16 @@
             <img src="{{url_for('static', filename='bikeguy.png')}}" alt=""width="50" height="50">
           </a>
           <form class="d-flex">
+            {% if current_user.is_authenticated %}
             <!-- <input class="form-control me-2" type="label" placeholder="Search images" aria-label="Search"> -->
             <button class="btn btn-secondary btn-light btn-sm" style="opacity: .5;" type="submit">Add a Post</button>
           </form>
+            {% else %}
           <form class="form-inline">
             <button type="button" class="btn btn-link text-white">Log In</button>
             <button class="btn btn-secondary btn-light btn-sm" type="submit">Sign Up</button>
           </form>
+           {% endif %}
         </div>
     </nav>
     <main>

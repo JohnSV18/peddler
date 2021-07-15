@@ -1,22 +1,29 @@
-import re
-from flask import Flask, request, redirect, render_template, url_for, Blueprint
-from flask_pymongo import PyMongo
-from jinja2 import Template
-
+from flask import request, redirect, render_template, url_for, Blueprint, Flask
+from flask_login import current_user
 from bson.objectid import ObjectId
-import pymongo
-# import dns
+from flask_pymongo import PyMongo
+from flask_mongoengine import MongoEngine
+#from cyclick_app.auth.auth_routes import *
 import os
+
+
+app = Flask(__name__)
+
+# app.config["MONGODB_SETTINGS"] = {
+#  "db": "peddlerdb",
+#   "host": "mongodb://127.0.0.1:27017/peddlerdb",
+# "SECRET_KEY": "os.getenv('any secret string')"
+# }
 
 ############################################################
 # SETUP
 ############################################################
-app = Flask(__name__)
 main = Blueprint('main', __name__)
 
 app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/peddlerdb"
 
 mongo = PyMongo(app)
+db = MongoEngine(app)
 
 ############################################################
 # ROUTES
@@ -32,6 +39,8 @@ def home():
     }
 
     return render_template('home.html', **context)
+
+# @login_required
 
 
 @main.route('/createpost', methods=["GET", "POST"])
@@ -51,6 +60,7 @@ def create():
 
     if request.method == 'POST':
         new_post = {
+            'user_id': current_user.id,
             'post_url': post_url,
             'post_title': post_title,
             'location': location,
