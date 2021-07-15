@@ -1,18 +1,14 @@
 from flask import Blueprint, request, render_template, redirect, url_for
-from cyclick_app.auth.models import User
-from cyclick_app.auth.forms import SignUpForm
 from flask_login import login_required, login_user, logout_user, current_user
-# from flask_bcrypt import Bcrypt
-#from cyclick_app.main.routes import *
+from .models import User
+from . import SignUpForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
+from app.db import get_db
 
-auth = Blueprint('auth', __name__)
-# bycrypt = Bcrypt(app)
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-
-@auth.route('/signup', methods=['GET', 'POST'])
+@bp.route('/signup', methods=['GET', 'POST'])
 def register():
-    username = request.form.get('username')
     form = SignUpForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -22,16 +18,16 @@ def register():
                     form.password.data, method='sha256')
                 user = User(username=form.username.data,
                             password=hashpass).save()
-                login_user(user)
+                # login_user(user)
                 return redirect(url_for('auth.authenticated'))
 
     return render_template('signup.html', form=form)
 
 
-@auth.route('/authenticated')
+@bp.route('/authenticated')
 @login_required
 def authenticated():
-    return render_template('home.html', name=current_user.email)
+    return render_template('home.html', name=current_user.username)
 # @auth.route('/signup', methods=['GET', 'POST'])
 # def signup():
 #     if request.method == 'POST':
@@ -46,13 +42,13 @@ def authenticated():
 #     return render_template('signup.html')
 
 
-@auth.route('/login', methods=['GET', 'POST'])
+@bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated == True:
         return redirect(url_for('main.home'))
-    form = SignUpForm()
+    form = LoginForm()
     if request.method == 'POST':
-        if form.validate():
+        if form.validate_on_submit():
             check_user = User.objects(username=form.username.data).first()
             if check_user:
                 if check_password_hash(check_user['password'], form.password.data):
@@ -60,9 +56,9 @@ def login():
                     return redirect(url_for('main.home'))
     return render_template('login.html', form=form)
 
-# @auth.route('/logout')
-# @login_required
-# def logout():
-#     logout_user()
-#     return redirect(url_for('main.home'))
-#     # return render_template('home.html', name=current_user.email)
+@bp.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.home'))
+    # return render_template('home.html', name=current_user.email)
