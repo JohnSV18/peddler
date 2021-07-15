@@ -15,6 +15,8 @@ main = Blueprint('main', __name__)
 
 host = os.environ.get("MONGODB_URI", "mongodb+srv://johndoe:12345@cyclick.h18wa.mongodb.net/peddlerdb") + "?retryWrites=false"
 app.config["MONGO_URI"] = host
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
 mongo = PyMongo(app)
 db = MongoEngine(app)
 
