@@ -14,10 +14,10 @@ class SignUpForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     # def validate_username(self, username):
-    #     user = User.query.filter_by(username=username.data).first()
-    #     # user = User.objects(username=form.username.data).first()
-    #     if user:
-    #         raise ValidationError('That username is taken. Please choose a different one.')
+    #user = User.query.filter_by(username=username.data).first()
+    #user = User.objects(username=form.username.data).first()
+    # if user:
+    #raise ValidationError('That username is taken. Please choose a different one.')
     # def validate_username(self, username):
     #    user = mongo.db.users.query.filter_by(username=username.data).first()
     #    if user:

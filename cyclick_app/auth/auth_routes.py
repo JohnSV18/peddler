@@ -3,10 +3,15 @@ from cyclick_app.auth.models import User
 from cyclick_app.auth.forms import SignUpForm
 from flask_login import login_required, login_user, logout_user, current_user
 # from flask_bcrypt import Bcrypt
-#from cyclick_app.main.routes import *
+from cyclick_app.main.routes import *
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_wtf.csrf import CSRFProtect
 
 auth = Blueprint('auth', __name__)
+
+# bycrypt = Bcrypt(app)
+csrf = CSRFProtect()
+
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def register():
@@ -25,10 +30,10 @@ def register():
     return render_template('signup.html', form=form)
 
 
-@auth.route('/authenticated')
+@auth.route('/authenticated', methods=['GET'])
 @login_required
 def authenticated():
-    return render_template('home.html', name=current_user.username)
+    return render_template('main.home')
 # @auth.route('/signup', methods=['GET', 'POST'])
 # def signup():
 #     if request.method == 'POST':
@@ -55,6 +60,9 @@ def login():
                 if check_password_hash(check_user['password'], form.password.data):
                     login_user(check_user)
                     return redirect(url_for('main.home'))
+    else:
+        if current_user.is_authenticated == True:
+            return redirect(url_for('home.html'))
     return render_template('login.html', form=form)
 
 # @auth.route('/logout')

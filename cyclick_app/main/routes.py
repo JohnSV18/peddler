@@ -4,6 +4,7 @@ from bson.objectid import ObjectId
 from flask_pymongo import PyMongo
 from flask_mongoengine import MongoEngine
 #from cyclick_app.auth.auth_routes import *
+from flask_login import login_required, login_user, logout_user, current_user
 import os
 
 
@@ -40,9 +41,8 @@ def home():
 
     return render_template('home.html', **context)
 
-# @login_required
 
-
+@login_required
 @main.route('/createpost', methods=["GET", "POST"])
 def create():
     post_url = request.form.get('post_url')
